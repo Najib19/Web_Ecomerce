@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/Logo_UM.png" type="image/x-icon" />
+    <title>Kontak - UrbanMart</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+      }
+
+      .logo-img {
+        width: 50px;
+        height: 50px;
+        background: white;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.5rem;
+        font-size: 1.6rem;
+        color: #667eea;
+        font-weight: bold;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .logo-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.3s;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.8;
+      }
+
+      .search-cart {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .search-box {
+        position: relative;
+      }
+
+      .search-box input {
+        padding: 0.5rem 2.5rem 0.5rem 1rem;
+        border: none;
+        border-radius: 25px;
+        width: 250px;
+        outline: none;
+      }
+
+      .search-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: #667eea;
+        cursor: pointer;
+      }
+
+      .cart-icon {
+        position: relative;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #ff4757;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: white;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+      /* Hero Section */
+      .hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.4)), url('img/bannercontact.svg');
+        height: 73vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s;
+        animation: fadeInUp 1s ease-out 0.6s both;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+      }
+      /* Footer */
+      footer {
+        background: #333;
+        color: white;
+        padding: 3rem 0 1rem;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        color: #667eea;
+      }
+
+      .footer-section ul {
+        list-style: none;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-section ul li a {
+        color: #ccc;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-section ul li a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #555;
+        color: #ccc;
+      }
+      /* Modals */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .modal-content {
+        background: white;
+        margin: 10% auto;
+        padding: 2rem;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 600px;
+        max-height: 70vh;
+        overflow-y: auto;
+        animation: slideIn 0.3s ease-out;
+      }
+
+      .auth-modal .modal-content {
+        max-width: 400px;
+        margin: 15% auto;
+      }
+
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .close:hover {
+        color: black;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .cart-total {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 1rem;
+        color: #667eea;
+      }
+
+      /* Auth Forms */
+      .auth-form {
+        text-align: center;
+      }
+
+      .auth-form h2 {
+        margin-bottom: 2rem;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #555;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #e1e8ed;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      .auth-button {
+        width: 100%;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        padding: 1rem;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-bottom: 1rem;
+      }
+
+      .auth-button:hover {
+        background: linear-gradient(45deg, #5a6fd8, #6a4190);
+        transform: translateY(-2px);
+      }
+
+      .auth-switch {
+        color: #667eea;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .auth-switch:hover {
+        text-decoration: underline;
+      }
+
+      .divider {
+        margin: 1.5rem 0;
+        text-align: center;
+        color: #999;
+        position: relative;
+      }
+
+      .divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #e1e8ed;
+      }
+
+      .divider span {
+        background: white;
+        padding: 0 1rem;
+      }
+
+      .social-login {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .social-btn {
+        flex: 1;
+        padding: 0.8rem;
+        border: 2px solid #e1e8ed;
+        background: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: 500;
+      }
+
+      .google-btn:hover {
+        border-color: #db4437;
+        color: #db4437;
+      }
+
+      .facebook-btn:hover {
+        border-color: #4267b2;
+        color: #4267b2;
+      }
+
+      .user-menu {
+        position: relative;
+        display: none;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: background 0.3s;
+      }
+
+      .user-info:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .user-dropdown {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        min-width: 200px;
+        margin-top: 0.5rem;
+        display: none;
+      }
+
+      .user-dropdown.active {
+        display: block;
+      }
+
+      .user-dropdown a {
+        display: block;
+        padding: 0.8rem 1rem;
+        color: #333;
+        text-decoration: none;
+        transition: background 0.3s;
+      }
+
+      .user-dropdown a:hover {
+        background: #f8f9fa;
+      }
+
+      .logout-btn {
+        color: #ff4757 !important;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: #667eea;
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .search-box input {
+          width: 150px;
+        }
+
+        .logo-text {
+          font-size: 1.5rem;
+        }
+
+        .logo-img {
+          width: 35px;
+          height: 35px;
+          font-size: 1.3rem;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1.1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .category-grid,
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 10px;
+        }
+
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+
+        .search-box input {
+          width: 120px;
+        }
+
+        .logo-text {
+          font-size: 1.3rem;
+        }
+
+        .logo-img {
+          width: 30px;
+          height: 30px;
+          font-size: 1.1rem;
+        }
+
+        section {
+          padding: 2rem 0;
+        }
+      }
+
+      .container-contact {
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 20px;
+        display: flex;
+        gap: 40px;
+      }
+      .form-container-contact,
+      .info-container-contact {
+        flex: 1;
+      }
+      .form-container-contact h1 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #111;
+      }
+      label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+        color: #333;
+      }
+      .input-contact input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 18px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      .button-contact button {
+        padding: 12px 20px;
+        background: #0a0a5c;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .button-contact button:hover {
+        background: #2323a3;
+      }
+      .info-container-contact h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+        color: #111;
+      }
+      .info-container-contact p {
+        margin: 6px 0;
+        color: #444;
+      }
+      .info-container-contact a {
+        color: #0a0a5c;
+        text-decoration: none;
+      }
+      .map {
+        margin-top: 20px;
+      }
+      iframe {
+        width: 100%;
+        height: 250px;
+        border: none;
+        border-radius: 6px;
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="container">
+        <a href="index.html" class="logo" onclick="goToHome()">
+          <div class="logo-img">UM</div>
+          <span class="logo-text">UrbanMart</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="categories.html">Kategori</a></li>
+          <li><a href="product.html">Produk</a></li>
+          <li><a href="#contact">Kontak</a></li>
+          <li><a href="#" onclick="openLogin()">Masuk</a></li>
+        </ul>
+
+        <div class="search-cart">
+          <div class="search-box">
+            <input type="text" placeholder="Cari produk..." id="searchInput" />
+            <button class="search-btn" onclick="searchProducts()">🔍</button>
+          </div>
+
+          <div class="cart-icon" onclick="openCart()">
+            🛒
+            <span class="cart-count" id="cartCount">0</span>
+          </div>
+
+          <!-- User Menu (shown when logged in) -->
+          <div class="user-menu" id="userMenu">
+            <div class="user-info" onclick="toggleUserDropdown()">
+              <span id="userName">User</span>
+              <span>▼</span>
+            </div>
+            <div class="user-dropdown" id="userDropdown">
+              <a href="#" onclick="viewProfile()">Profil Saya</a>
+              <a href="#" onclick="viewOrders()">Pesanan Saya</a>
+              <a href="#" onclick="viewWishlist()">Wishlist</a>
+              <a href="#" onclick="logout()" class="logout-btn">Keluar</a>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-menu" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content"></div>
+    </section>
+
+    <!--ContactMe-->
+    <div class="container-contact">
+      <!-- Form Kontak -->
+      <div class="form-container-contact">
+        <h1>Hubungi Kami</h1>
+        <form action="#" method="post">
+          <div class="input-contact">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required />
+
+            <label for="message">Your Message (optional)</label>
+            <textarea id="message" name="message" rows="6"></textarea>
+          </div>
+
+          <div class="button-contact"><button type="submit">Kirim</button></div>
+        </form>
+      </div>
+
+      <!-- Info Perusahaan -->
+      <div class="info-container-contact">
+        <h2>Headquarters</h2>
+        <p><b>Address:</b> Jl. Belanja No.123, Jakarta, Indonesia</p>
+        <p><b>Phone:</b> +62 21 123 4567</p>
+        <p><b>Fax:</b> +62 21 123 4568</p>
+        <p><b>Website:</b> <a href="https://shopnow.id">www.urbanmarket.com</a></p>
+
+        <div class="map">
+          <!-- Ganti src berikut dengan link Google Maps lokasi kamu -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.934835544!2d107.61670751533156!3d-6.903449069495447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTQnMTIuNCJTIDEwN8KwMzcnMTMuMSJF!5e0!3m2!1sid!2sid!4v1618232755405!5m2!1sid!2sid"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Tentang UrbanMart</h3>
+            <ul>
+              <li><a href="#">Tentang Kami</a></li>
+              <li><a href="#">Karir</a></li>
+              <li><a href="#">Press</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Layanan Pelanggan</h3>
+            <ul>
+              <li><a href="#">Pusat Bantuan</a></li>
+              <li><a href="#">Hubungi Kami</a></li>
+              <li><a href="#">Kebijakan Pengembalian</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Ikuti Kami</h3>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Twitter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 UrbanMart. Semua hak cipta dilindungi.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeCart()">&times;</span>
+        <h2>Keranjang Belanja</h2>
+        <div id="cartItems"></div>
+        <div class="cart-total" id="cartTotal">Total: Rp 0</div>
+        <button class="cta-button" style="width: 100%; margin-top: 1rem" onclick="checkout()">Checkout</button>
+      </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal auth-modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAuth()">&times;</span>
+        <div class="auth-form">
+          <h2>Masuk ke Akun Anda</h2>
+
+          <div class="social-login">
+            <button class="social-btn google-btn" onclick="loginWithGoogle()">🔍 Google</button>
+            <button class="social-btn facebook-btn" onclick="loginWithFacebook()">📘 Facebook</button>
+          </div>
+
+          <div class="divider">
+            <span>atau</span>
+          </div>
+
+          <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+              <label for="loginEmail">Email</label>
+              <input type="email" id="loginEmail" required />
+            </div>
+
+            <div class="form-group">
+              <label for="loginPassword">Password</label>
+              <input type="password" id="loginPassword" required />
+            </div>
+
+            <button type="submit" class="auth-button">Masuk</button>
+          </form>
+
+          <p>Belum punya akun? <a href="#" class="auth-switch" onclick="switchToRegister()">Daftar di sini</a></p>
+          <p><a href="#" class="auth-switch" onclick="forgotPassword()">Lupa password?</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal auth-modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAuth()">&times;</span>
+        <div class="auth-form">
+          <h2>Buat Akun Baru</h2>
+
+          <div class="social-login">
+            <button class="social-btn google-btn" onclick="registerWithGoogle()">🔍 Google</button>
+            <button class="social-btn facebook-btn" onclick="registerWithFacebook()">📘 Facebook</button>
+          </div>
+
+          <div class="divider">
+            <span>atau</span>
+          </div>
+
+          <form id="registerForm" onsubmit="handleRegister(event)">
+            <div class="form-group">
+              <label for="registerName">Nama Lengkap</label>
+              <input type="text" id="registerName" required />
+            </div>
+
+            <div class="form-group">
+              <label for="registerEmail">Email</label>
+              <input type="email" id="registerEmail" required />
+            </div>
+
+            <div class="form-group">
+              <label for="registerPassword">Password</label>
+              <input type="password" id="registerPassword" required minlength="6" />
+            </div>
+
+            <div class="form-group">
+              <label for="registerConfirmPassword">Konfirmasi Password</label>
+              <input type="password" id="registerConfirmPassword" required />
+            </div>
+
+            <button type="submit" class="auth-button">Daftar</button>
+          </form>
+
+          <p>Sudah punya akun? <a href="#" class="auth-switch" onclick="switchToLogin()">Masuk di sini</a></p>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

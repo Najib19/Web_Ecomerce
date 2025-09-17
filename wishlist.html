@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wishlist Saya - UrbanMart</title>
+    <link rel="shortcut icon" href="img/Logo_UM.png" type="image/x-icon" />
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        background: #f8f9fa;
+      }
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 2rem;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 2rem auto;
+        padding: 0 20px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      }
+      .wishlist-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .wishlist-image {
+        background: #eee;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: #666;
+      }
+      .wishlist-info {
+        padding: 1rem;
+        flex: 1;
+      }
+      .wishlist-info h3 {
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+      }
+      .price {
+        color: #667eea;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      .actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .btn {
+        flex: 1;
+        padding: 0.6rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .btn-cart {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+      }
+      .btn-remove {
+        background: #ef4444;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a style="text-decoration: none; color: #fff" href="index.html">
+        <h2>UrbanMart</h2>
+      </a>
+    </header>
+
+    <div class="container">
+      <h1>Wishlist Saya</h1>
+      <div class="wishlist-grid">
+        <div class="wishlist-card">
+          <div class="wishlist-image">Gambar Produk</div>
+          <div class="wishlist-info">
+            <h3>Sepatu Sneakers</h3>
+            <div class="price">Rp 500.000</div>
+            <div class="actions">
+              <button class="btn btn-cart" onclick="addToCartFromWishlist(1)">Tambah ke Keranjang</button>
+              <button class="btn btn-remove" onclick="removeItem(this)">Hapus</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="wishlist-card">
+          <div class="wishlist-image">Gambar Produk</div>
+          <div class="wishlist-info">
+            <h3>Meja Belajar</h3>
+            <div class="price">Rp 800.000</div>
+            <div class="actions">
+              <button class="btn btn-cart" onclick="addToCartFromWishlist(1)">Tambah ke Keranjang</button>
+              <button class="btn btn-remove" onclick="removeItem(this)">Hapus</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="wishlist-card">
+          <div class="wishlist-image">Gambar Produk</div>
+          <div class="wishlist-info">
+            <h3>Matras Yoga</h3>
+            <div class="price">Rp 200.000</div>
+            <div class="actions">
+              <button class="btn btn-cart" onclick="addToCartFromWishlist(1)">Tambah ke Keranjang</button>
+              <button class="btn btn-remove" onclick="removeItem(this)">Hapus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      function updateCartCount() {
+        const cartCount = document.getElementById('cartCount');
+        if (cartCount) {
+          const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+          cartCount.textContent = totalItems;
+        }
+      }
+      function addToCartFromWishlist(productId, name, price) {
+        const existingItem = cart.find((item) => item.id === productId);
+
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({ id: productId, name, price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartCount();
+        alert(name + ' berhasil ditambahkan ke keranjang!');
+      }
+
+      function removeItem(button) {
+        button.closest('.wishlist-card').remove();
+      }
+    </script>
+  </body>
+</html>

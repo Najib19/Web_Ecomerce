@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil - UrbanMart</title>
+    <link rel="shortcut icon" href="img/Logo_UM.png" type="image/x-icon">
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+      }
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-bottom: 1px solid #ddd;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header a{
+        text-decoration: none;
+      }
+      header h1 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .container {
+        display: flex;
+        max-width: 1200px;
+        margin: 20px auto;
+        gap: 20px;
+        padding: 0 20px;
+      }
+      /* Sidebar */
+      .sidebar {
+        background: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        width: 250px;
+        flex-shrink: 0;
+      }
+      .sidebar button {
+        width: 100%;
+        text-align: left;
+        padding: 10px;
+        border: none;
+        background: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+      .sidebar button.active {
+        background: #2563eb;
+        color: #fff;
+      }
+      .sidebar button:hover {
+        background: #e5e7eb;
+      }
+      /* Content */
+      .content {
+        flex: 1;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      h2 {
+        margin-top: 0;
+      }
+      /* Profile */
+      .profile {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .profile img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #ddd;
+      }
+      .profile-info label {
+        display: block;
+        font-size: 13px;
+        color: #555;
+        margin-bottom: 4px;
+      }
+      .profile-info p,
+      .profile-info input,
+      .profile-info select {
+        margin-bottom: 12px;
+      }
+      .profile-info input,
+      .profile-info select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .btn {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-right: 8px;
+      }
+      .btn-primary {
+        background: #2563eb;
+        color: #fff;
+      }
+      .btn-danger {
+        background: #dc2626;
+        color: #fff;
+      }
+      .btn-secondary {
+        background: #6b7280;
+        color: #fff;
+      }
+      /* Address */
+      .address-card {
+        border: 1px solid #ddd;
+        padding: 12px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+      }
+      .address-card.default {
+        border-color: #2563eb;
+        background: #eff6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <h1 style="color: #fff">UrbanMart</h1>
+      </a>
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover" />
+        <span style="color: #fff">Ahmad Wijaya</span>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <button class="active" onclick="showTab('profile')">Profil</button>
+        <button onclick="showTab('addresses')">Alamat</button>
+        <button onclick="showTab('orders')">Pesanan</button>
+        <button onclick="showTab('wishlist')">Wishlist</button>
+        <button onclick="showTab('notifications')">Notifikasi</button>
+        <button onclick="showTab('payment')">Kartu & Bank</button>
+        <button onclick="showTab('security')">Keamanan</button>
+        <button onclick="showTab('help')">Bantuan</button>
+        <button onclick="showTab('settings')">Pengaturan</button>
+      </div>
+
+      <!-- Content -->
+      <div class="content">
+        <!-- Profil -->
+        <div id="profile" class="tab">
+          <h2>Profil Saya</h2>
+          <div class="profile">
+            <img id="profile-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" />
+            <div class="profile-info" style="flex: 1">
+              <label>Nama Lengkap</label>
+              <p id="name">Ahmad Wijaya</p>
+              <label>Email</label>
+              <p id="email">ahmad.wijaya@email.com</p>
+              <label>Nomor Telepon</label>
+              <p id="phone">08123456789</p>
+              <label>Tanggal Lahir</label>
+              <p id="birth">1990-05-15</p>
+              <label>Jenis Kelamin</label>
+              <p id="gender">Laki-laki</p>
+              <button class="btn btn-primary" onclick="editProfile()">Edit Profil</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alamat -->
+        <div id="addresses" class="tab" style="display: none">
+          <h2>Alamat Saya</h2>
+          <div class="address-card default">
+            <h4>Rumah <span style="background: #2563eb; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 12px">Utama</span></h4>
+            <p>Ahmad Wijaya</p>
+            <p>08123456789</p>
+            <p>Jl. Merdeka No. 123</p>
+            <p>Bekasi, Jawa Barat 17000</p>
+          </div>
+          <div class="address-card">
+            <h4>Kantor</h4>
+            <p>Ahmad Wijaya</p>
+            <p>08123456789</p>
+            <p>Jl. Sudirman No. 456</p>
+            <p>Jakarta Pusat, DKI Jakarta 10220</p>
+          </div>
+          <button class="btn btn-primary">Tambah Alamat</button>
+        </div>
+
+        <!-- Placeholder Tabs -->
+        <div id="orders" class="tab" style="display: none">
+          <h2>Pesanan Saya</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+        <div id="wishlist" class="tab" style="display: none">
+          <h2>Wishlist</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+        <div id="notifications" class="tab" style="display: none">
+          <h2>Notifikasi</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+        <div id="payment" class="tab" style="display: none">
+          <h2>Kartu & Bank</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+        <div id="security" class="tab" style="display: none">
+          <h2>Keamanan</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+        <div id="help" class="tab" style="display: none">
+          <h2>Bantuan</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+        <div id="settings" class="tab" style="display: none">
+          <h2>Pengaturan</h2>
+          <p>Fitur ini akan segera hadir.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showTab(id) {
+        document.querySelectorAll('.tab').forEach((tab) => (tab.style.display = 'none'));
+        document.querySelectorAll('.sidebar button').forEach((btn) => btn.classList.remove('active'));
+        document.getElementById(id).style.display = 'block';
+        event.target.classList.add('active');
+      }
+
+      function editProfile() {
+        alert('Fitur edit profil akan segera hadir!');
+      }
+    </script>
+  </body>
+</html>

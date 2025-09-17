@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesanan Saya - UrbanMart</title>
+  <link rel="shortcut icon" href="img/Logo_UM.png" type="image/x-icon">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+    }
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 2rem;
+    }
+    a{
+        text-decoration: none;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 20px;
+    }
+    h1 { text-align: center; margin-bottom: 2rem; }
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .order-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .order-items {
+      margin-bottom: 1rem;
+    }
+    .order-items p {
+      margin: 5px 0;
+    }
+    .status {
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: white;
+    }
+    .status.selesai { background: #22c55e; }
+    .status.proses { background: #facc15; color: #333; }
+    .status.batal { background: #ef4444; }
+    .total {
+      font-weight: bold;
+      color: #667eea;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html">
+    <h2 style="color: #fff;">UrbanMart</h2>
+    </a>
+  </header>
+
+  <div class="container">
+    <h1>Pesanan Saya</h1>
+    <div class="order-grid">
+      <div class="order-card">
+        <div class="order-header">
+          <span>Pesanan #12345</span>
+          <span class="status selesai">Selesai</span>
+        </div>
+        <div class="order-items">
+          <p>📱 Smartphone Android x1</p>
+          <p>👔 Kemeja Pria x2</p>
+        </div>
+        <div class="total">Total: Rp 2.800.000</div>
+      </div>
+
+      <div class="order-card">
+        <div class="order-header">
+          <span>Pesanan #12346</span>
+          <span class="status proses">Diproses</span>
+        </div>
+        <div class="order-items">
+          <p>💻 Laptop Gaming x1</p>
+        </div>
+        <div class="total">Total: Rp 15.000.000</div>
+      </div>
+
+      <div class="order-card">
+        <div class="order-header">
+          <span>Pesanan #12347</span>
+          <span class="status batal">Dibatalkan</span>
+        </div>
+        <div class="order-items">
+          <p>🏠 Kursi Kantor x1</p>
+        </div>
+        <div class="total">Total: Rp 1.200.000</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
